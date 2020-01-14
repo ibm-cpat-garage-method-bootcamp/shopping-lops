@@ -64,5 +64,7 @@ describe('kata-wordwrap', () => {
       test('when given (aa , 3) it should return aa ', () => {
         expect(kataWordWrap('aa ', 3)).toEqual("aa ");
       });
-
+      test('when given (apple pie , 4) it should return appl_e pi_e ', () => {
+        expect(kataWordWrap('apple pie', 4)).toEqual("appl_e pi_e");
+      });
 });
