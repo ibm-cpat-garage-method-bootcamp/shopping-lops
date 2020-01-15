@@ -1,34 +1,9 @@
-import { Catalog } from "../../models/Catalog";
+import {filterCheckedItems, filterUncheckedItems, handleCheckToPurchase} from "../../../shared/catalog-shared";
 
 function getCatalogItems() {
   let items = { id: 1, name: "apples", qty: 1 };
 
   return items;
-}
-
-function handleCheckToPurchase(id, catalogItems) {
-  for (let i = 0; i < catalogItems.length; i++) {
-    let currItem = catalogItems[i];
-    console.log(currItem.id);
-    if (currItem.id === id) {
-      currItem.checkToPurchase = !currItem.checkToPurchase;
-    }
-  }
-  return catalogItems;
-}
-
-function filterCheckedItems(catalogItems) {
-  let filteredItems = catalogItems.filter(item => {
-    return item.checkToPurchase === true;
-  });
-  return filteredItems;
-}
-
-function filterUncheckedItems(catalogItems) {
-  let filteredItems = catalogItems.filter(item => {
-    return item.checkToPurchase === false;
-  });
-  return filteredItems;
 }
 
 describe("Catalog Component", () => {

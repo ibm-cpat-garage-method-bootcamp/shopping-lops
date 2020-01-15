@@ -1,16 +1,21 @@
 import React, { Component } from "react";
 import "./Catalog.scss";
 
+const defaultItems = [
+    {id: 1, name: "apples", qty: 1, checkToPurchase: false},
+    {id: 2, name: "bananas", qty: 10, checkToPurchase: false},
+    {id: 3, name: "beer", qty: 6, checkToPurchase: false},
+    {id: 4, name: "wine", qty: 2, checkToPurchase: false}
+];
+
 class Catalog extends Component {
 
-    state = {
-        catalog: [
-            {id: 1, name: "apples", qty: 1, checkToPurchase: false},
-            {id: 2, name: "bananas", qty: 10, checkToPurchase: false},
-            {id: 3, name: "beer", qty: 6, checkToPurchase: false},
-            {id: 4, name: "wine", qty: 2, checkToPurchase: false}
-        ]
-    };
+    constructor() {
+        super();
+        this.state = {
+            catalog: defaultItems
+        };
+    }
 
     handleCheckToPurchase(id, catalogItems) {
         for (let i = 0; i < catalogItems.length; i++) {
@@ -27,7 +32,12 @@ class Catalog extends Component {
         let filteredItems = catalogItems.filter(item => {
             return item.checkToPurchase === true;
         });
-        this.setState({catalog: filteredItems});
+        this.updateCatalog(filteredItems);
+        return filteredItems;
+    }
+
+    updateCatalog(newCatalogItems) {
+        this.setState({catalog: newCatalogItems})
     }
 
     render() {
