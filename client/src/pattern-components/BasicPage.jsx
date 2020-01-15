@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import "./patterns.scss";
+import Catalog from "./Catalog/Catalog";
 
 class BasicPage extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class BasicPage extends Component {
   render() {
     return (
       <div className="bx--grid pattern-container">
-        <Header title="Basic Page" subtitle="A basic boilerplate page." />
+        <Header title="Basic Page" subtitle="Hey A basic boilerplate page." />
+        <Catalog />
       </div>
     );
   }

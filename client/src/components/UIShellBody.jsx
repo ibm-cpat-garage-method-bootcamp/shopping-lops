@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SimpleList from "../pattern-components/SimpleList";
 import BasicPage from "../pattern-components/BasicPage";
 import "../pattern-components/patterns.scss";
+import Catalog from "../pattern-components/Catalog/Catalog";
 
 class UIShellBody extends Component {
   components = {
