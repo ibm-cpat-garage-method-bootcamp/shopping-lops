@@ -5,7 +5,6 @@ const wordWrap = (string, columnWidth) => {
   if (string.length > columnWidth) {
     let result = '';
     for (let i = 0; i < string.length; i++){
-
       if (i === columnWidth) {
         result += '\n';
         columnWidth = i + columnWidth;
