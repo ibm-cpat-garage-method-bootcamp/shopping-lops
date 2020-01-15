@@ -9,7 +9,6 @@ function getCatalogItems() {
 function handleCheckToPurchase(id, catalogItems) {
   for (let i = 0; i < catalogItems.length; i++) {
     let currItem = catalogItems[i];
-    console.log(currItem.id);
     if (currItem.id === id) {
       currItem.checkToPurchase = !currItem.checkToPurchase;
     }
