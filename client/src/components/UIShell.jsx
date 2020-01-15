@@ -10,6 +10,7 @@ import {
   SideNavMenuItem
 } from "carbon-components-react/lib/components/UIShell/";
 import UIShellBody from "./UIShellBody";
+import Catalog from "../pattern-components/Catalog/Catalog";
 
 const Fade20 = () => (
   <svg
@@ -86,6 +87,7 @@ class UIShell extends Component {
         <Content id="main-content">
           <UIShellBody patternName={this.state.patternName} />
         </Content>
+
       </div>
     );
   }
