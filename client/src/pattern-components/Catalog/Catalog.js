@@ -113,20 +113,6 @@ const defaultItems = [
     qty: 2,
     checkToPurchase: false,
     comments: "Cabernet Sauvignon, Chardonnay, Sauvignon blanc"
-  },
-  {
-    id: 17,
-    name: "beer",
-    qty: 6,
-    checkToPurchase: false,
-    comments: "Franziskaner, Paulaner or BlueMoon"
-  },
-  {
-    id: 18,
-    name: "wine",
-    qty: 2,
-    checkToPurchase: false,
-    comments: "Cabernet Sauvignon, Chardonnay, Sauvignon blanc"
   }
 ];
 
