@@ -42,7 +42,42 @@
   color: white;
 }
 
-.button {
+.catalog-form {
+  div {
+    display: flex;
+    width: auto;
+    max-width: 600px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  label {
+    width: 30%;
+  }
+  input {
+    width: 70%;
+  }
+}
+.grocery-form {
+  div {
+    display: flex;
+    width: auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  label {
+    width: 30%;
+  }
+  .aisle-label {
+    width: 17%;
+    margin-left: 20px;
+  }
+  .aisle-input {
+    width: 10%;
+  }
+}
+
+.button,
+.submitBtn {
   padding: 8px;
   font-size: 90%;
   text-align: center;
