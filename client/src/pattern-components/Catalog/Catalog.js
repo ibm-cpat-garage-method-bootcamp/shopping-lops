@@ -73,7 +73,7 @@ const defaultItems = [
     comments: "Only organic"
   },
   {
-    id:11,
+    id: 11,
     name: "beer",
     qty: 6,
     checkToPurchase: false,
@@ -101,7 +101,7 @@ const defaultItems = [
     comments: "Only organic"
   },
   {
-    id:15,
+    id: 15,
     name: "beer",
     qty: 6,
     checkToPurchase: false,
@@ -115,7 +115,7 @@ const defaultItems = [
     comments: "Cabernet Sauvignon, Chardonnay, Sauvignon blanc"
   },
   {
-    id:17,
+    id: 17,
     name: "beer",
     qty: 6,
     checkToPurchase: false,
@@ -183,16 +183,16 @@ class Catalog extends Component {
 
   render() {
     return (
-      <div >
+      <div>
         <p className="header">Catalog</p>
         <div className="container">
-            <table className="catalog">
-                <th></th>
-                <th>Item</th>
-                <th>Quantity</th>
-                <th>Comments</th>
+          <table className="catalog">
+            <th></th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Comments</th>
             {this.renderTableData()}
-            </table>
+          </table>
         </div>
         <br />
         <button
