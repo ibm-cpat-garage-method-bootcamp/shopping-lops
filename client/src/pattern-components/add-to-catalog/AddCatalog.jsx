@@ -1,25 +1,32 @@
 import React, { Component } from "react";
+import { Item } from "../../models/Item.ts";
+import { Catalog } from "../../models/Catalog.ts";
+import { GroceryStore} from "../../models/GroceryStore.ts";
+import  "./AddToCatalog.scss";
 
 class AddToCatalog extends Component {
   constructor() {
     super();
     this.state = {
-      catalog: [],
-      alert: false
+      catalog: new Catalog([]),
+      alert: false,
+      storeCount: 0,
     };
   }
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      message: ""
-    });
+      message: "",
+    })
   };
 
-  handleSubmitClick = e => {
-    e.preventDefault();
+  handleSubmitClick = (e) => {
+    if(e !== null) {
+      e.preventDefault();
+    }
 
-    if (this.state.itemName.trim().length === 0) {
+    if(this.state.itemName.trim().length === 0){
       this.setState({
         alert: true
       });
@@ -30,11 +37,19 @@ class AddToCatalog extends Component {
       });
     } else {
       let updatedCatalog = this.state.catalog;
-      let item = {
-        itemName: this.state.itemName,
-        itemQuantity: this.state.itemQuantity,
-        itemComment: this.state.itemComment
-      };
+      let stores = [];
+
+      for(let i = 0; i < this.state.storeCount; i++) {
+        const storeKey = 'store' + i;
+        const aisleKey = 'aisle' + i;
+        const storeName = this.state[storeKey];
+        const aisleName = this.state[aisleKey];
+        let store = new GroceryStore(storeName, aisleName);
+        stores.push(store)
+      }
+
+      const item = new Item (this.state.itemName, this.state.itemQuantity, this.state.itemComment, stores)
+
       updatedCatalog.push(item);
       return this.setState({
         updatedCatalog,
@@ -43,31 +58,59 @@ class AddToCatalog extends Component {
     }
   };
 
+  handleAddStoreClick = async (e) => {
+    e.preventDefault();
+    await this.setState({
+      storeCount: this.state.storeCount + 1,
+    });
+  };
+
+
   render() {
+    let groceryStoreInputs = [];
+    for (let i = 0; i < this.state.storeCount; i++) {
+      groceryStoreInputs.push(
+        <div className="grocery-form">
+          <label>Store Name: </label>
+          <input name={`store${i}`} type="text" onChange={(e) => this.handleInputChange(e)} />
+          <label className="aisle-label">Aisle #: </label>
+          <input className="aisle-input" name={`aisle${i}`} type="text" onChange={(e) => this.handleInputChange(e)} />
+        </div>
+      )
+    }
+
     return (
-      <div className="awesomeDiv">
+      <div className="catalog-form">
         <form>
-          <label>Item Name: </label>
-          <input
-            name="itemName"
-            type="text"
-            onChange={e => this.handleInputChange(e)}
-          />
-          <label>Item Quantity: </label>
-          <input
-            name="itemQuantity"
-            type="text"
-            onChange={e => this.handleInputChange(e)}
-          />
-          <label>Comment: </label>
-          <input
-            name="itemComment"
-            type="text"
-            onChange={e => this.handleInputChange(e)}
-          />
-          <button onClick={e => this.handleSubmitClick(e)}>Submit</button>
+          <div>
+            <label>Item Name: </label>
+            <input name="itemName" type="text" onChange={(e) => this.handleInputChange(e)} />
+          </div>
+          <div>
+            <label>Item Quantity: </label>
+            <input name="itemQuantity" type="text" onChange={(e) => this.handleInputChange(e)} />
+          </div>
+          <div>
+            <label>Comment: </label>
+            <input name="itemComment" type="text" onChange={(e) => this.handleInputChange(e)} />
+          </div>
+
+
+          {groceryStoreInputs}
+
+
+          <div>
+            <button onClick={(e) => this.handleAddStoreClick(e)}>Add Store</button>
+            <button className="submitBtn" onClick={(e)=> this.handleSubmitClick(e)}>Submit</button>
+          </div>
+
+
+
+
         </form>
-        <p>{this.state.message}</p>
+        <p>
+          {this.state.message}
+        </p>
       </div>
     );
   }
