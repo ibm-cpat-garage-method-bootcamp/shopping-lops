@@ -16,7 +16,7 @@ class AddToCatalog extends Component {
       [e.target.name]: e.target.value,
       message: '',
     })
-  }
+  };
 
   handleSubmitClick = (e) => {
     e.preventDefault();

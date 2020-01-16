@@ -1,19 +1,43 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import AddToCatalog from './AddCatalog';
 import "../../setupTests"
+import {GroceryStore} from "../../models/GroceryStore";
+import {Item} from "../../models/Item";
+import {Catalog} from "../../models/Catalog";
+
 let item = {
   name: 'bacon',
   size: 20,
   comment: 'more! 20 pounds Janice!',
-}
+};
+
 let addToCatalog = () => {
   state.catalog.push(item);
   return state;
-}
+};
+
 let state = {
   catalog: [],
 };
+
+
+function addItemToCatalog(item, list) {
+  if (item === null) {
+    return list;
+  }
+  if (list === null) {
+    list = [];
+  }
+  for (let i = 0; i < list.length; i++) {
+    if(list[i].name === item.name) {
+      list[i].qty += item.qty;
+      return list;
+    }
+  }
+  list.push(item);
+  return list;
+}
 
 describe('AddToCatalog', () => {
 
@@ -24,19 +48,111 @@ describe('AddToCatalog', () => {
   beforeEach(() => wrapper = mount(<AddToCatalog />));
 
   describe('addToCatalog', () => {
+    // TODO update this test when given a chance
     it('adding item should be added into state', () => {
       expect((state.catalog.length)).toEqual(0);
     });
 
     it('catalog length should be greater than 0', () => {
       expect(addToCatalog().catalog.length).toBeGreaterThan(0);
-    })
+    });
 
     it('adding an item into state should make the catalog length grow', () => {
       let a = state.catalog.length;
       addToCatalog();
       expect((state.catalog.length)).toBeGreaterThan(a);
     });
+
+    it('should allow the user to add an item to the catalog', () => {
+      let catalogItems = [
+        { id: 1, name: "apples", qty: 1, checkToPurchase: false },
+        { id: 2, name: "bananas", qty: 10, checkToPurchase: false }
+      ];
+
+      let item = { id: 3, name: "bacon", qty: 20, checkToPurchase: false };
+
+      let actualResult = [
+        { id: 1, name: "apples", qty: 1, checkToPurchase: false },
+        { id: 2, name: "bananas", qty: 10, checkToPurchase: false },
+        { id: 3, name: "bacon", qty: 20, checkToPurchase: false }
+      ];
+
+      expect(addItemToCatalog(item, catalogItems)).toEqual(actualResult);
+    });
+
+    it('should allow the user to increase the qty when a duplicate item exists in the catalog', () => {
+      let catalogItems = [
+        { id: 1, name: "apples", qty: 1, checkToPurchase: false },
+        { id: 2, name: "bananas", qty: 10, checkToPurchase: false },
+      ];
+
+      let item = { id: 3, name: "apples", qty: 12, checkToPurchase: false };
+
+      let actualResult = [
+        { id: 1, name: "apples", qty: 13, checkToPurchase: false },
+        { id: 2, name: "bananas", qty: 10, checkToPurchase: false },
+      ];
+
+      expect(addItemToCatalog(item, catalogItems)).toEqual(actualResult);
+    });
+
+    it('should not allow user to add null item to list', () => {
+      let catalogItems = [
+        { id: 1, name: "apples", qty: 1, checkToPurchase: false },
+        { id: 2, name: "bananas", qty: 10, checkToPurchase: false },
+      ];
+
+      let item = null;
+
+      let actualResult = [
+        { id: 1, name: "apples", qty: 1, checkToPurchase: false },
+        { id: 2, name: "bananas", qty: 10, checkToPurchase: false },
+      ];
+
+      expect(addItemToCatalog(item, catalogItems)).toEqual(actualResult);
+    });
+
+    it('should give a list of items when there is no list and the user adds an item', () => {
+      let catalogItems = null;
+
+      let item = { id: 3, name: "bacon", qty: 12, checkToPurchase: false };
+
+      let actualResult = [
+        { id: 3, name: "bacon", qty: 12, checkToPurchase: false }
+      ];
+      expect(addItemToCatalog(item, catalogItems)).toEqual(actualResult);
+
+    });
+
+    // TODO ask Product Owner if user can add multiple items at a time to implement test.
+
+    it('should ', () => {
+      expect(true).toBe(true);
+    });
+
+    it('should give a list of items when there is no list and the user adds an item', () => {
+
+      let apple = new Item("apples", 1);
+      let banana = new Item("bananas", 10);
+
+      let groceryStore = new GroceryStore("HEB", 12);
+
+      let items = new Catalog([apple, banana]);
+
+      let bacon = new Item("bacon", 12, [groceryStore]);
+
+
+      let actualResult = new Catalog([apple, banana, bacon]);
+
+      expect(addItemToCatalog(bacon, items)).toEqual(actualResult);
+
+    });
+
+
+    // it('should allow the user add an item without a quantity to catalog ', () => {
+    //
+    //
+    // });
 
     it('should render a <div />', () => {
       expect(wrapper.find('.awesomeDiv').length).toEqual(1);
