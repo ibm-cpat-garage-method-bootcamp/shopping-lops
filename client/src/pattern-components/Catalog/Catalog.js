@@ -128,14 +128,16 @@ class Catalog extends Component {
     return this.state.catalog.map(item => {
       return (
         <tr key={item.id}>
-          <input
-            type="checkbox"
-            name={item.name}
-            value={item.value}
-            onChange={() => {
-              this.handleCheckToPurchase(item.id, this.state.catalog);
-            }}
-          />
+          <td>
+            <input
+              type="checkbox"
+              name={item.name}
+              value={item.value}
+              onChange={() => {
+                this.handleCheckToPurchase(item.id, this.state.catalog);
+              }}
+            />
+          </td>
           <td>{item.name}</td>
           <td>{item.qty}</td>
           <td>{item.comments}</td>
@@ -172,11 +174,15 @@ class Catalog extends Component {
       <div>
         <p className="header">Catalog</p>
         <table className="catalog">
-          <th></th>
-          <th>Item</th>
-          <th>Quantity</th>
-          <th>Comments</th>
+          <tbody>
+            <tr>
+              <th></th>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Comments</th>
+            </tr>
           {this.renderTableData()}
+          </tbody>
         </table>
         <br />
         <button

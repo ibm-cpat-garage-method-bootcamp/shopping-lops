@@ -70,7 +70,7 @@ class AddToCatalog extends Component {
     let groceryStoreInputs = [];
     for (let i = 0; i < this.state.storeCount; i++) {
       groceryStoreInputs.push(
-        <div className="grocery-form">
+        <div key={i} className="grocery-form">
           <label>Store Name: </label>
           <input name={`store${i}`} type="text" onChange={(e) => this.handleInputChange(e)} />
           <label className="aisle-label">Aisle #: </label>
