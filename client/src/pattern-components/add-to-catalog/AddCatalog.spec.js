@@ -142,7 +142,7 @@ describe('AddToCatalog', () => {
 
       let items = new Catalog([apple, banana]);
 
-      let bacon = new Item("bacon", 12, [groceryStore]);
+      let bacon = new Item("bacon", 12, "I want Bacon!", [groceryStore]);
 
 
       let actualResult = new Catalog([apple, banana, bacon]);
@@ -160,9 +160,9 @@ describe('AddToCatalog', () => {
 
       let groceryStore = new GroceryStore("HEB", 12);
 
-      let bacon = new Item("bacon", undefined,[groceryStore]);
+      let bacon = new Item("bacon", undefined, "I want Bacon!", [groceryStore]);
 
-      let actualBacon = new Item("bacon", null, [groceryStore]);
+      let actualBacon = new Item("bacon", null, "I want Bacon!", [groceryStore]);
 
       let actualResult = new Catalog([apple, banana, actualBacon]);
 
@@ -180,17 +180,18 @@ describe('AddToCatalog', () => {
 
     describe('validhandleSubmitClick', () => {
       beforeEach(() => wrapper.find('input').at(0).simulate('change', { target: { name: 'itemName', value: 'bacon' } }));
-      beforeEach(() => wrapper.find('button').simulate('click'));
+      beforeEach(() => wrapper.instance().handleSubmitClick(null));
+
       it('adding item to catalog should make local state catalog greater than 0', () => {
-        expect(wrapper.state().catalog.length).toBeGreaterThan(0);
+        expect(wrapper.state().catalog.items.length).toBeGreaterThan(0);
       });
 
       it('name field needs to be a string before item can be added', () => {
-        expect(typeof(wrapper.state().catalog[0].itemName) === 'string').toEqual(true);
+        expect(typeof(wrapper.state().catalog.items[0].name) === 'string').toEqual(true);
       });
 
       it('name field needs to be filled before item can be added', () => {
-        expect(wrapper.state().catalog[0].itemName.trim().length).toBeGreaterThan(0);
+        expect(wrapper.state().catalog.items[0].name.trim().length).toBeGreaterThan(0);
       });
 
       it('thank you paragraph is no longer hidden', () => {
@@ -201,7 +202,7 @@ describe('AddToCatalog', () => {
     describe('nonvalidhandleSubmitClick', () => {
       it('if field name is empty then the form will throw an alert', () => {
         wrapper.find('input').at(0).simulate('change', { target: { name: 'itemName', value: '' } });
-        wrapper.find('button').simulate('click');
+        wrapper.find('button.submitBtn').simulate('click');
         expect(wrapper.state().alert).toEqual(true);
       });
     });
