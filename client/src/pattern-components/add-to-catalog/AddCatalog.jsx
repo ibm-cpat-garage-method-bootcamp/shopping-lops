@@ -39,12 +39,16 @@ class AddToCatalog extends Component {
       let stores = [];
 
       for(let i = 0; i < this.state.storeCount; i++) {
-
-        // let store = new GroceryStore(this.state.store, this.state.aisle);
-        // stores.push()
+        const storeKey = 'store' + i;
+        const aisleKey = 'aisle' + i;
+        const storeName = this.state[storeKey];
+        const aisleName = this.state[aisleKey];
+        let store = new GroceryStore(storeName, aisleName);
+        stores.push(store)
       }
 
       const item = new Item (this.state.itemName, this.state.itemQuantity, this.state.itemComment, stores)
+
       updatedCatalog.push(item);
       return this.setState({
         updatedCatalog,

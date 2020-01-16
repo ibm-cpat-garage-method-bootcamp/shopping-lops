@@ -171,7 +171,7 @@ describe('AddToCatalog', () => {
     });
 
     it('should render a <div />', () => {
-      expect(wrapper.find('.awesomeDiv').length).toEqual(1);
+      expect(wrapper.find('.catalog-form').length).toEqual(1);
     });
 
     it('input should be found', () => {
