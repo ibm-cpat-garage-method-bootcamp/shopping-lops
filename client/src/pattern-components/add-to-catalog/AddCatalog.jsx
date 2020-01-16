@@ -3,20 +3,21 @@ import { Item } from "../../models/Item.ts";
 import { Catalog } from "../../models/Catalog.ts";
 import { GroceryStore} from "../../models/GroceryStore.ts";
 import  "./AddToCatalog.scss";
+
 class AddToCatalog extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       catalog: new Catalog([]),
       alert: false,
       storeCount: 0,
-    }
+    };
   }
 
   handleInputChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      message: '',
+      message: "",
     })
   };
 
@@ -27,13 +28,13 @@ class AddToCatalog extends Component {
 
     if(this.state.itemName.trim().length === 0){
       this.setState({
-        alert:true
-      })
+        alert: true
+      });
     }
-    if(this.state.alert) {
+    if (this.state.alert) {
       this.setState({
-        message: "Please enter an item name!",
-      })
+        message: "Please enter an item name!"
+      });
     } else {
       let updatedCatalog = this.state.catalog;
       let stores = [];
@@ -52,8 +53,8 @@ class AddToCatalog extends Component {
       updatedCatalog.push(item);
       return this.setState({
         updatedCatalog,
-        message: 'Thank you for submitting an item',
-      })
+        message: "Thank you for submitting an item"
+      });
     }
   };
 
