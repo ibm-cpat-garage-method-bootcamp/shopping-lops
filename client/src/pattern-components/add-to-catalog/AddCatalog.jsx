@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-
-let catalog = [1,]
+import { GroceryStore } from "../../models/GroceryStore.ts";
+import { Item } from "../../models/Item.ts";
+import { Catalog } from "../../models/Catalog.ts";
 
 class AddToCatalog extends Component {
   constructor() {
     super()
     this.state = {
-      catalog: [],
+      catalog: new Catalog([]),
       alert: false,
+      storeCount: 0,
     }
   }
 
@@ -19,8 +21,9 @@ class AddToCatalog extends Component {
   };
 
   handleSubmitClick = (e) => {
-    e.preventDefault();
-
+    if(e !== null) {
+      e.preventDefault();
+    }
 
     if(this.state.itemName.trim().length === 0){
       this.setState({
@@ -33,11 +36,7 @@ class AddToCatalog extends Component {
       })
     } else {
       let updatedCatalog = this.state.catalog;
-      let item = {
-        itemName: this.state.itemName,
-        itemQuantity: this.state.itemQuantity,
-        itemComment: this.state.itemComment,
-      };
+      const item = new Item (this.state.itemName, this.state.itemQuantity, this.state.itemComment)
       updatedCatalog.push(item);
       return this.setState({
         updatedCatalog,
@@ -46,8 +45,28 @@ class AddToCatalog extends Component {
     }
   }
 
+  handleAddStoreClick = async (e) => {
+    e.preventDefault();
+    await this.setState({
+      storeCount: this.state.storeCount + 1,
+    })
+    console.log(this.state.storeCount)
+  }
+
 
   render() {
+    let groceryStoreInputs = [];
+    for (let i = 0; i < this.state.storeCount; i++) {
+      groceryStoreInputs.push(
+        <div>
+          <label>Grocery Store Name: </label>
+          <input name="itemQuantity" type="text" onChange={(e) => this.handleInputChange(e)} />
+          <label>Aisle Number: </label>
+          <input name="itemComment" type="text" onChange={(e) => this.handleInputChange(e)} />
+        </div>
+      )
+    }
+
 
     return (
       <div className="awesomeDiv">
@@ -58,7 +77,9 @@ class AddToCatalog extends Component {
           <input name="itemQuantity" type="text" onChange={(e) => this.handleInputChange(e)} />
           <label>Comment: </label>
           <input name="itemComment" type="text" onChange={(e) => this.handleInputChange(e)} />
-          <button onClick={(e)=> this.handleSubmitClick(e)}>Submit</button>
+          <button onClick={(e) => this.handleAddStoreClick(e)}>+</button>
+          {groceryStoreInputs}
+          <button className="submitBtn" onClick={(e)=> this.handleSubmitClick(e)}>Submit</button>
         </form>
         <p>
           {this.state.message}
