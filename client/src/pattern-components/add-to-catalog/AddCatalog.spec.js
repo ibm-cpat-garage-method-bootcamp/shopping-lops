@@ -29,6 +29,9 @@ function addItemToCatalog(item, list) {
   if (list === null) {
     list = [];
   }
+  if (item.qty === undefined) {
+    item.qty = null;
+  }
   for (let i = 0; i < list.length; i++) {
     if(list[i].name === item.name) {
       list[i].qty += item.qty;
@@ -149,10 +152,23 @@ describe('AddToCatalog', () => {
     });
 
 
-    // it('should allow the user add an item without a quantity to catalog ', () => {
-    //
-    //
-    // });
+    it('should allow the user add an item without a quantity to catalog ', () => {
+      let apple = new Item("apples", 1);
+      let banana = new Item("bananas", 10);
+
+      let items = new Catalog([apple, banana]);
+
+      let groceryStore = new GroceryStore("HEB", 12);
+
+      let bacon = new Item("bacon", undefined,[groceryStore]);
+
+      let actualBacon = new Item("bacon", null, [groceryStore]);
+
+      let actualResult = new Catalog([apple, banana, actualBacon]);
+
+      expect(addItemToCatalog(bacon, items)).toEqual(actualResult);
+
+    });
 
     it('should render a <div />', () => {
       expect(wrapper.find('.awesomeDiv').length).toEqual(1);
