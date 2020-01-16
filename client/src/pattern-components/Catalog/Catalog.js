@@ -185,15 +185,13 @@ class Catalog extends Component {
     return (
       <div>
         <p className="header">Catalog</p>
-        <div className="container">
-          <table className="catalog">
-            <th></th>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Comments</th>
-            {this.renderTableData()}
-          </table>
-        </div>
+        <table className="catalog">
+          <th></th>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Comments</th>
+          {this.renderTableData()}
+        </table>
         <br />
         <button
           className="button"
