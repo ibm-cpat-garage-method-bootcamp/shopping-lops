@@ -41,8 +41,9 @@
   },
   "devDependencies": {
     "@types/node": "^11.13.19",
+    "jest": "^24.9.0",
     "nodemon": "^1.12.1",
-    "supertest": "^4.0.2",
-    "sonarqube-scanner": "^2.5.0"
+    "sonarqube-scanner": "^2.5.0",
+    "supertest": "^4.0.2"
   }
 }
