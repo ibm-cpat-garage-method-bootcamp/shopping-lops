@@ -29,6 +29,104 @@ const defaultItems = [
     qty: 2,
     checkToPurchase: false,
     comments: "Cabernet Sauvignon, Chardonnay, Sauvignon blanc"
+  },
+  {
+    id: 5,
+    name: "apples",
+    qty: 1,
+    checkToPurchase: false,
+    comments: "Honeycrisp"
+  },
+  {
+    id: 6,
+    name: "bananas",
+    qty: 10,
+    checkToPurchase: false,
+    comments: "Only organic"
+  },
+  {
+    id: 7,
+    name: "beer",
+    qty: 6,
+    checkToPurchase: false,
+    comments: "Franziskaner, Paulaner or BlueMoon"
+  },
+  {
+    id: 8,
+    name: "wine",
+    qty: 2,
+    checkToPurchase: false,
+    comments: "Cabernet Sauvignon, Chardonnay, Sauvignon blanc"
+  },
+  {
+    id: 9,
+    name: "apples",
+    qty: 1,
+    checkToPurchase: false,
+    comments: "Honeycrisp"
+  },
+  {
+    id: 10,
+    name: "bananas",
+    qty: 10,
+    checkToPurchase: false,
+    comments: "Only organic"
+  },
+  {
+    id:11,
+    name: "beer",
+    qty: 6,
+    checkToPurchase: false,
+    comments: "Franziskaner, Paulaner or BlueMoon"
+  },
+  {
+    id: 12,
+    name: "wine",
+    qty: 2,
+    checkToPurchase: false,
+    comments: "Cabernet Sauvignon, Chardonnay, Sauvignon blanc"
+  },
+  {
+    id: 13,
+    name: "apples",
+    qty: 1,
+    checkToPurchase: false,
+    comments: "Honeycrisp"
+  },
+  {
+    id: 14,
+    name: "bananas",
+    qty: 10,
+    checkToPurchase: false,
+    comments: "Only organic"
+  },
+  {
+    id:15,
+    name: "beer",
+    qty: 6,
+    checkToPurchase: false,
+    comments: "Franziskaner, Paulaner or BlueMoon"
+  },
+  {
+    id: 16,
+    name: "wine",
+    qty: 2,
+    checkToPurchase: false,
+    comments: "Cabernet Sauvignon, Chardonnay, Sauvignon blanc"
+  },
+  {
+    id:17,
+    name: "beer",
+    qty: 6,
+    checkToPurchase: false,
+    comments: "Franziskaner, Paulaner or BlueMoon"
+  },
+  {
+    id: 18,
+    name: "wine",
+    qty: 2,
+    checkToPurchase: false,
+    comments: "Cabernet Sauvignon, Chardonnay, Sauvignon blanc"
   }
 ];
 
@@ -85,17 +183,17 @@ class Catalog extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="header">Catalog</div>
-        <table className="catalog">
-          <tr key="table-data-header">
-            <th></th>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Comments</th>
-          </tr>
-          {this.renderTableData()}
-        </table>
+      <div >
+        <p className="header">Catalog</p>
+        <div className="container">
+            <table className="catalog">
+                <th></th>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Comments</th>
+            {this.renderTableData()}
+            </table>
+        </div>
         <br />
         <button
           className="button"

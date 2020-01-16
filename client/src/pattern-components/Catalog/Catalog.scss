@@ -1,3 +1,13 @@
+.container {
+  height: 450px;
+  overflow-y: scroll;
+}
+
+.table {
+  width: 300px;
+  table-layout: fixed;
+}
+
 .header {
   font-size: 22px;
   padding-bottom: 12px;
@@ -6,6 +16,11 @@
 .catalog {
   border-collapse: collapse;
   width: 100%;
+}
+
+.catalog th {
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 
 .catalog td,
