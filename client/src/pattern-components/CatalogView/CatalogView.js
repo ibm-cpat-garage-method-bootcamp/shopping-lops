@@ -55,13 +55,13 @@ class CatalogView extends Component {
     });
   };
 
-  handleSubmitClick = e => {
+  handleSubmitClick = async (e) => {
     if (e !== null) {
       e.preventDefault();
     }
 
-    if (this.state.itemName.trim().length === 0) {
-      this.setState({
+    if (this.state.itemName === undefined || this.state.itemName.trim().length === 0) {
+      await this.setState({
         alert: true
       });
     }
@@ -114,14 +114,16 @@ class CatalogView extends Component {
     return this.state.catalog.map(item => {
       return (
         <tr key={item.id}>
-          <input
-            type="checkbox"
-            name={item.name}
-            value={item.value}
-            onChange={() => {
-              this.handleCheckToPurchase(item.id, this.state.catalog);
-            }}
-          />
+          <td>
+            <input
+              type="checkbox"
+              name={item.name}
+              value={item.value}
+              onChange={() => {
+                this.handleCheckToPurchase(item.id, this.state.catalog);
+              }}
+            />
+          </td>
           <td>{item.name}</td>
           <td>{item.qty}</td>
           <td>{item.comment}</td>
@@ -223,11 +225,15 @@ class CatalogView extends Component {
         <br />
         <p className="header">Catalog</p>
         <table className="catalog">
-          <th></th>
-          <th>Item</th>
-          <th>Quantity</th>
-          <th>Comments</th>
+          <tbody>
+          <tr>
+            <th></th>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Comments</th>
+          </tr>
           {this.renderTableData()}
+          </tbody>
         </table>
         <br />
         <button
