@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-deployment
+spec:
+  selector:
+    matchLabels:
+      run: shopping
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: shopping
+    spec:
+      containers:
+        - name: shopping-lops
+          image: pokawa/shopping-lops
+          ports:
+            - containerPort: 3000
