@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-sql-deployment
+spec:
+  selector:
+    matchLabels:
+      run: shopping-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: shopping-deployment
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.6
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+          ports:
+            - containerPort: 3001
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: mysql-data
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
