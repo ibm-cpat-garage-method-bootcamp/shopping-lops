@@ -9,6 +9,7 @@ spec:
   selector:
     app: shopping-lops
   ports:
-    - port: 80
+    - nodePort: 31806
+      port: 80
       targetPort: 3000
       protocol: TCP
