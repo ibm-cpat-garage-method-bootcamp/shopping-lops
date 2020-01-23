@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopping-lops
+  template:
+    metadata:
+      labels:
+        app: shopping-lops
+    spec:
+      containers:
+        - name: shopping-lops
+          image: shauncolley/shoppinglops:1.0
+          ports:
+            - containerPort: 3000
