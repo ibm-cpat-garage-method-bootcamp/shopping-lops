@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shopping-deployment
+  name: shopping-web
 spec:
   selector:
     matchLabels:
-      run: shopping
-  replicas: 2
+      run: app
+  replicas: 1
   template:
     metadata:
       labels:
-        run: shopping
+        run: app
     spec:
       containers:
         - name: shopping-lops
