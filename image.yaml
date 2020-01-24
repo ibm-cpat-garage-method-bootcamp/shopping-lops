@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: shopping-lops-web
+spec:
+  type: image
+  params:
+    - name: url
+      value: hub.docker.com/r/yellocabins/shopping-lops
