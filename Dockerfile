@@ -2,6 +2,8 @@ FROM registry.access.redhat.com/ubi8/nodejs-10
 
 RUN mkdir app
 
+RUN chmod +rwx ./app
+
 # Install npm production packages
 COPY --chown=default:root . ./app
 
@@ -11,8 +13,6 @@ ENV PORT 3000
 EXPOSE 3000/tcp
 
 WORKDIR ./app
-
-RUN chmod +rwx ./app
 
 RUN npm install --production
 
