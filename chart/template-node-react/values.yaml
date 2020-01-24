@@ -8,8 +8,8 @@ replicaCount: 1
 apiHost: ""
 
 image:
-  repository: replace
-  tag: replace
+  repository: yellocabins/shopping-lops
+  tag: latest
   pullPolicy: IfNotPresent
   port: 3000
 
