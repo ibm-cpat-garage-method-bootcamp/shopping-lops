@@ -12,6 +12,8 @@ EXPOSE 3000/tcp
 
 WORKDIR ./app
 
+RUN chmod +rwx ./app
+
 RUN npm install --production
 
 CMD ["npm", "start"]
