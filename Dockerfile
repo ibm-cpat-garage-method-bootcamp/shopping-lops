@@ -1,6 +1,8 @@
 FROM registry.access.redhat.com/ubi8/nodejs-10
 
-RUN mkdir app
+USER root
+
+RUN mkdir -m 777 app
 
 # Install npm production packages
 COPY --chown=default:root . ./app
